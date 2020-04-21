@@ -183,7 +183,7 @@ geom_boxplot()
 ```
 
 
-Q.(4) Analysis on the basis of individuals with most observations. ( at rest)
+Q.(4) Analysis on the basis of individuals with most observations. (at rest)
 
 ```{r}
 suppressMessages(library(tidyverse))
@@ -348,15 +348,91 @@ suppressWarnings(ggpairs(cleanPSD, columns= c(17,21,25), progress = FALSE))
 
 ```{r}
 
+cleanPSD%>%
+group_by(`measurement date`) %>%
+summarise(pulse0Mean = mean(`pulse 0'`)) %>%
+ggplot(aes(x= `measurement date`, y=pulse0Mean)) + geom_line()
+
+# From this plot we can say the average resting pulse throughout the experimental years was under 100 and hence normal.
+
+cleanPSD%>%
+group_by(`measurement date`) %>%
+summarise(pulse1Mean = mean(`pulse 1'`)) %>%
+ggplot(aes(x= `measurement date`, y=pulse1Mean)) + geom_line()
+
+# From this plot we can say the average pulse just after the run from 2008-2013 was consistently over 135 which is very high but after 2013 the average pulse rate decreases and even getting less than 120 is 2016 which can be considered good as pulse 1 is taken just after completing the run.
+
+cleanPSD%>%
+group_by(`measurement date`) %>%
+summarise(pulse5Mean = mean(`pulse 5'`)) %>%
+ggplot(aes(x= `measurement date`, y=pulse5Mean)) + geom_line()
+
+# From this plot we can say the average pulse after 5 minutes of the run was consistently less than 116 and reaches its lowest average in 2018.
+
+cleanPSD%>%
+group_by(`measurement date`) %>%
+summarise(pulse10Mean = mean(`pulse 10'`)) %>%
+ggplot(aes(x= `measurement date`, y=pulse10Mean)) + geom_line()
+# From this plot we can say the average pulse after 10  minutes of the run was nearly same to the pulse rate after 5 minutes as they both satayed around than 110-115. The lowest average for pulse10 was recorded in 2008.
+
+
 ```
 
 
 ```{r}
+cleanPSD%>%
+group_by(`measurement date`) %>%
+summarise(SBP0Mean = mean(`SBP 0'`)) %>%
+ggplot(aes(x= `measurement date`, y=SBP0Mean)) + geom_line()
+
+cleanPSD%>%
+group_by(`measurement date`) %>%
+summarise(SBP1Mean = mean(`SBP 1'`)) %>%
+ggplot(aes(x= `measurement date`, y=SBP1Mean)) + geom_line()
+
+cleanPSD%>%
+group_by(`measurement date`) %>%
+summarise(SBP5Mean = mean(`SBP 5'`)) %>%
+ggplot(aes(x= `measurement date`, y=SBP5Mean)) + geom_line()
+
+cleanPSD%>%
+group_by(`measurement date`) %>%
+summarise(SBP10Mean = mean(`SBP 10'`)) %>%
+ggplot(aes(x= `measurement date`, y=SBP10Mean)) + geom_line()
+
+# Average SBP at rest after 2009 remained under 120 and hence normal but in 2008 it was around 126 which is considered high at rest.
+
+# Average SBP after 1 min of the run was between 155-125 which is above normal but this value decreases every year from it's peak in 2008 to it's lowest in 2016.
+
+# Average SBP after 5 min of the run was between 130-105. This value decreases every year from it's peak in 2008 to it's lowest in 2015. After 2009 it's value was consistently less than 120 which is normal. So, we can say after 5 min of the run average SBP tends to get normal. 
+
+# after 10 mins of run SBP was normal throughout the experimental years.
+
 
 ```
 
  
 ```{r}
+cleanPSD%>%
+group_by(`measurement date`) %>%
+summarise(DBP0Mean = mean(`DBP 0'`)) %>%
+ggplot(aes(x= `measurement date`, y=DBP0Mean)) + geom_line()
+
+cleanPSD%>%
+group_by(`measurement date`) %>%
+summarise(DBP1Mean = mean(`DBP 1'`)) %>%
+ggplot(aes(x= `measurement date`, y=DBP1Mean)) + geom_line()
+
+cleanPSD%>%
+group_by(`measurement date`) %>%
+summarise(DBP5Mean = mean(`DBP 5'`)) %>%
+ggplot(aes(x= `measurement date`, y=DBP5Mean)) + geom_line()
+
+cleanPSD%>%
+group_by(`measurement date`) %>%
+summarise(DBP10Mean = mean(`DBP 10'`)) %>%
+ggplot(aes(x= `measurement date`, y=DBP10Mean)) + geom_line()
+# Average distolic blood pressure throughout the experimental years at rest, after 1 min , after 5min and after 10 min of the run remained under the normal category and reaching it's lowest value in 2018 and that to was normal so we can say running exercise doesn't seem to have much impact on the distolic blood pressure.
 ```
 ```{r}
 ```
